@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<!-- saved from url=(0071)file:///C:/Users/Michel%20Vasquez/Documents/Visual/CursoHTML/index.html -->
+<html data-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!--Titulo-->
+         <!--Codificacion-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--adaptabilidad de dispositivos-->
+        <title>Portafolio Web de Michel Vasquez - Portfolio del Ingeniero Michel Vasquez</title>
+       
+        <meta name="description" content="Portafolio Web de Michel Vasquez"> <!--Descripcion de la pagina-->
+
+        <!--Metatags de Open Graph-->
+        <meta property="og:title" content="Portafolio de un trainee"> <!--Titulo de la pagina-->
+        <meta property="og:description" content="Portafolio Web de Michel Vasquez"> <!--Descripcion de la pagina-->
+        <meta property="og:image" content="images/yo.jpg"> <!--Imagen de la pagina-->
+        <meta property="og:image:alt" content="Una fotografia de Michel Vasquez en blanco y negro "> <!--Descripcion de la imagen-->
+        <!--Metatags de Twitter Card-->
+        <link rel="alternate" hreflang="es-MX" href="https://michel-vasquez/en"> <!--Idioma de la pagina-->
+        <link rel="canonical" href="https://michel-vasquez/"> <!--Direccion de la pagina-->
+        <!--Metatags de SEO-->
+        <meta name="robots" content="index, follow"> <!--Permite a los motores de busqueda indexar la pagina-->
+        <meta name="theme-color" content="#8f7adas"> <!--Color de la barra de navegacion en dispositivos moviles-->
+    <link rel="icon" type="image/png" href="images/usuario1.png"> <!--Icono de la pagina-->    
+        <style>
+            /*Estilos de la pagina*/
+           :root {
+            --bg: #f6f6fa;
+            --bg-main: #fff8;
+            --primary: #6c4edb;
+            --primary-dark: #3d2c7b;
+            --text: #222;
+            --text-light: #616161;
+            --shadow: #0002;
+            --header-bg: #fff;
+            --footer-bg: #f1f1f1e0;
+            --content-max-width: 960px; /* exact user-requested max width */
+        }
+        [data-theme="dark"] {
+            --bg: #181828;
+            --bg-main: #23233a;
+            --primary: #b8a7f7;
+            --primary-dark: #8d7cee;
+            --text: #f6f6fa;
+            --text-light: #b8a7f7;
+            --shadow: #0008;
+            --header-bg: #23233a;
+            --footer-bg: #23233a;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: var(--bg);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            color: var(--text);
+            transition: background 0.3s, color 0.3s;
+            /* Prevent horizontal shifting caused by large transform animations */
+            overflow-x: hidden;
+        }
+        /* Sweep-in animation for header and image on initial load */
+        @keyframes sweep-in {
+            0% { opacity: 0; transform: translateX(120px) skewX(-6deg) scale(0.995); }
+            60% { opacity: 1; transform: translateX(-8px) skewX(2deg) scale(1.002); }
+            100% { opacity: 1; transform: translateX(0) skewX(0) scale(1); }
+        }
+
+        .sweep-in {
+            animation: sweep-in 3500ms cubic-bezier(.22,.9,.32,1) both;
+            will-change: transform, opacity;
+        }
+        /* Reveal-on-scroll 3D for textual content */
+        .reveal-3d {
+            opacity: 0;
+            transform: perspective(900px) translateX(120px) rotateY(-12deg) scale(0.99);
+            /* slower entrance: increase duration */
+            transition: transform 1000ms cubic-bezier(.22,.9,.32,1), opacity 1000ms;
+            will-change: transform, opacity;
+        }
+        .reveal-3d.visible {
+            opacity: 1;
+            transform: perspective(900px) translateX(0) rotateY(0) scale(1);
+        }
+        /* Respect users who prefer reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .sweep-in,
+            .reveal-3d,
+            #foto,
+            header,
+            .header-inner .theme-toggle {
+                animation: none !important;
+                transition: none !important;
+                transform: none !important;
+                opacity: 1 !important;
+            }
+            .reveal-3d.visible { transform: none !important; }
+        }
+        header {
+            background: var(--header-bg);
+            box-shadow: 0 2px 8px var(--shadow);
+            padding: 20px 0 10px 0;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateX(120px) scale(0.98);
+            transition: opacity 0.8s, transform 0.8s;
+            will-change: opacity, transform;
+        }
+        nav {
+            text-align: center;
+            margin-top: 10px;
+        }
+        nav a {
+            color: var(--primary);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+        h1 {
+            text-align: center;
+            color: var(--primary-dark);
+            margin-top: 20px;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+        }
+        h2, h3 {
+            color: var(--primary);
+        }
+        main {
+            max-width: var(--content-max-width);
+            margin: 0 auto 80px auto;
+            background: var(--bg-main);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px var(--shadow);
+            padding: 30px 40px;
+        }
+    /* add bottom spacing so a fixed footer won't overlap content (compact footer) */
+    /* reduced because footer is now thinner */
+    main.with-footer-space { padding-bottom: 72px; }
+        #foto {
+            display: block;
+            margin: 30px auto 20px auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px var(--shadow);
+            border: 4px solid var(--header-bg);
+            /* make image responsive and keep proportions */
+            width: 100%;
+            max-width: 360px; /* desktop preferred max (reduced) */
+            height: auto; /* maintain aspect ratio */
+            object-fit: cover; /* helps when image is constrained by width/height */
+            opacity: 0;
+            transform: translateX(120px) scale(0.98);
+            transition: opacity 0.8s, transform 0.8s;
+            will-change: opacity, transform;
+        }
+        ul, ol {
+            background: var(--header-bg);
+            border-radius: 8px;
+            padding: 15px 30px;
+            margin: 15px 0;
+        }
+        /* Form styling to match page colors and respond to theme */
+        form {
+            background: var(--bg-main); /* same as main container, changes with theme */
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 28px var(--shadow);
+            margin: 18px 0;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        fieldset.centrar-campos {
+            border: 1px solid rgba(0,0,0,0.06);
+            padding: 14px;
+            border-radius: 10px;
+            margin-bottom: 14px;
+            background: var(--header-bg); /* matches header background and theme */
+            color: var(--text);
+        }
+        label { display:block; margin-bottom:8px; color:var(--text); }
+        input[type="text"], input[type="email"], input[type="tel"], textarea, select, input[list] {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(0,0,0,0.12);
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.03);
+            font-size: 0.98rem;
+            transition: box-shadow 0.18s ease, transform 0.12s ease;
+        }
+        input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focus {
+            outline: none;
+            box-shadow: 0 6px 20px rgba(108,78,219,0.14);
+            transform: translateY(-2px);
+            border-color: var(--primary);
+        }
+        .centrar-boton { text-align:center; margin-top: 12px; }
+        .centrar-boton input[type="submit"] {
+            background: linear-gradient(90deg, var(--primary) 60%, var(--primary-dark) 100%);
+            color: #fff;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 999px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 28px var(--shadow);
+            transition: transform 0.12s ease, box-shadow 0.12s ease;
+        }
+        .centrar-boton input[type="submit"]:hover { transform: translateY(-3px); box-shadow: 0 14px 38px var(--shadow); }
+        /* Respect reduced motion for form interactions */
+        @media (prefers-reduced-motion: reduce) {
+            input[type="text"], input[type="email"], textarea, select, input[list], .centrar-boton input[type="submit"] {
+                transition: none !important;
+                transform: none !important;
+            }
+        }
+        /* Footer / contact links inside main: icon above text and rounded icon style
+           Only apply to anchors without the download attribute (excludes the #foto anchor) */
+        /* Container to center the contact links relative to the form */
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* center horizontally relative to parent (main) */
+            gap: 12px 18px;
+            margin: 18px auto 8px auto;
+            padding: 6px 12px;
+            max-width: 720px; /* match form max width on small screens */
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .contact-links a {
+            display: inline-flex;
+            flex-direction: column-reverse; /* text node comes first in markup, show image above */
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--text);
+            padding: 6px 8px;
+        }
+        .contact-links a img {
+            border-radius: 12px;
+            padding: 6px;
+            background: var(--header-bg);
+            box-shadow: 0 8px 20px var(--shadow);
+            width: 56px;
+            height: 56px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.15s ease;
+        }
+        .contact-links a:hover img { transform: translateY(-4px); }
+        /* ...existing code... */
+        /* El script se moverá fuera de la sección de estilos */
+    </style>
+    <style>
+    /* Mobile: center and stack contact links and constrain form width */
+    @media (max-width: 700px) {
+        main {
+            padding: 20px 18px;
+        }
+        /* make contact links full-width blocks and center them */
+        .contact-links {
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            max-width: 420px;
+            margin: 8px auto 12px auto;
+            padding: 0;
+        }
+        .contact-links a {
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+            justify-content: center;
+        }
+        .contact-links a img {
+            width: 48px;
+            height: 48px;
+        }
+        /* constrain form and center it */
+        form {
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+    </style>
+    <style>
+    /* Animación suave para <details> (global) */
+    details[open] > .details-content {
+        max-height: 999px;
+        opacity: 1;
+        transition: max-height 0.9s cubic-bezier(.22,.9,.32,1), opacity 0.6s;
+    }
+    details > .details-content {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.9s cubic-bezier(.22,.9,.32,1), opacity 0.6s;
+    }
+    </style>
+    <script>
+    // Animación de aparición/desvanecimiento derecha-izquierda para la imagen 'yo'
+    (function(){
+        var ticking = false;
+        var img = document.getElementById('foto');
+        var header = document.querySelector('header');
+        // Respect user preference for reduced motion
+        function handleScroll() {
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            if (ticking) return;
+            ticking = true;
+            window.requestAnimationFrame(function(){
+                if (img) {
+                    var rect = img.getBoundingClientRect();
+                    var windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                    var percent = 1 - Math.max(0, Math.min(1, (rect.bottom - 100) / (windowHeight - 100)));
+                    // clamp percent defensively
+                    percent = Math.max(0, Math.min(1, Number(percent) || 0));
+                    img.style.opacity = String(1 - percent * 0.9);
+                    img.style.transform = `translateX(${120 * percent}px) scale(${1 - percent * 0.08})`;
+                }
+                if (header) {
+                    var rectH = header.getBoundingClientRect();
+                    var windowHeightH = window.innerHeight || document.documentElement.clientHeight;
+                    var percentH = 1 - Math.max(0, Math.min(1, (rectH.bottom - 50) / (windowHeightH - 50)));
+                    percentH = Math.max(0, Math.min(1, Number(percentH) || 0));
+                    header.style.opacity = String(1 - percentH * 0.9);
+                    header.style.transform = `translateX(${120 * percentH}px) scale(${1 - percentH * 0.08})`;
+                }
+                ticking = false;
+            });
+        }
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        // run once to normalize initial state
+        window.addEventListener('load', handleScroll);
+    })();
+    </script>
+       
+        
+    </head>
+    <body>
+        <style>
+        /* Header and theme button layout - centered to match main */
+        .header-inner {
+            max-width: var(--content-max-width);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 18px 24px;
+        }
+        .header-inner h1 { margin: 0; font-size: 1.9rem; color: var(--primary-dark); }
+        .header-inner nav { display:flex; gap:16px; align-items:center; }
+        .header-inner nav a { margin: 0 10px; font-size: 1rem; }
+        .header-inner .theme-toggle {
+            background: linear-gradient(90deg, var(--primary) 60%, var(--primary-dark) 100%);
+            color: #fff;
+            border: none;
+            border-radius: 42px;
+            padding: 12px 20px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 28px var(--shadow);
+            transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.2s;
+        }
+        .header-inner .theme-toggle:hover { transform: translateY(-2px) scale(1.02); }
+        /* show/hide link on small screens */
+        #setTheme { display: inline-block; }
+        @media (max-width: 700px) {
+            /* hide textual link on small screens */
+            #setTheme { display: none !important; }
+            .header-inner { flex-direction: column; gap: 8px; }
+            /* move the header button out of the header visually: keep it in the DOM but float it */
+            .header-inner .theme-toggle {
+                position: fixed;
+                right: 18px;
+                bottom: 18px;
+                width: 56px;
+                height: 56px;
+                padding: 0;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.25rem;
+                z-index: 9999;
+                box-shadow: 0 12px 36px var(--shadow);
+            }
+            /* ensure the button's text is hidden but accessible for screen readers */
+            .header-inner .theme-toggle span.text {
+                position: absolute !important;
+                width: 1px !important;
+                height: 1px !important;
+                padding: 0 !important;
+                margin: -1px !important;
+                overflow: hidden !important;
+                clip: rect(0,0,0,0) !important;
+                white-space: nowrap !important;
+                border: 0 !important;
+            }
+        }
+        </style>
+        <style>
+        /* Fixed translucent footer styled similarly to header (ultra-subtle, thinner) */
+        footer {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* even lower opacity so footer is very subtle */
+            background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.08));
+            box-shadow: 0 -1px 10px var(--shadow);
+            padding: 4px 0; /* thinner */
+            z-index: 999;
+            opacity: 0;
+            transform: translateY(10px) scale(0.999);
+            transition: opacity 0.4s, transform 0.4s;
+            will-change: opacity, transform;
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            /* very subtle top border to separate from content */
+            border-top: 1px solid rgba(0,0,0,0.03);
+        }
+        /* inner container matches header width centering */
+        .footer-inner {
+            max-width: var(--content-max-width);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px 12px; /* extra compact */
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        /* animate footer on load similarly to header/photo sweep-in */
+        footer.sweep-in { animation: sweep-in 900ms cubic-bezier(.22,.9,.32,1) both; }
+        /* use theme-aware backgrounds for footer */
+        [data-theme="dark"] footer {
+            /* dark theme: low-opacity dark background */
+            background: linear-gradient(180deg, rgba(35,35,58,0.28), rgba(35,35,58,0.20));
+            border-top: 1px solid rgba(255,255,255,0.03);
+        }
+        [data-theme="light"] footer {
+            background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.08));
+            border-top: 1px solid rgba(0,0,0,0.03);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            footer { animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important; }
+        }
+        </style>
+    
+         <!-- El botón se mueve dentro del header para alinearlo con su contenido -->
+         <header class="sweep-in">
+            <div class="header-inner">
+                <h1>Portafolio Web de Michel Vasquez</h1>
+                <nav>
+                    <a href="file:///C:/Users/Michel%20Vasquez/Documents/Visual/PortafolioWeb/index.html#proyectos">Proyectos</a> <!--Enlaces internos de la pagina-->
+                    <a href="file:///C:/Users/Michel%20Vasquez/Documents/Visual/PortafolioWeb/index.html#habilidades">Habilidades</a>
+                    <a href="file:///C:/Users/Michel%20Vasquez/Documents/Visual/PortafolioWeb/index.html#lenguajes">Lenguajes o tecnológias</a>
+                    <a href="https://www.linkedin.com/in/michel-vasquez281292/" target="_blank" rel="noreferrer">LinkedIn</a>
+                </nav>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">☀️ <span class="text">Tema claro</span></button>
+            </div>
+        </header>
+
+        
+        <script>
+    // Inicializa el tema y los listeners cuando el DOM esté listo
+    document.addEventListener('DOMContentLoaded', function() {
+        // Cambia el tema y guarda la preferencia en localStorage
+        const btn = document.getElementById('theme-toggle');
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+                  // build accessible content: emoji visible, label inside .text so it can be visually hidden on small screens
+                  const isDark = theme === 'dark';
+                  const emoji = isDark ? '\u2600\ufe0f' : '\ud83c\udf19';
+                  const label = isDark ? 'Tema claro' : 'Tema oscuro';
+                  if (btn) btn.innerHTML = `${emoji} <span class="text">${label}</span>`;
+                  // Actualizar también el enlace 'Cambiar tema' si existe (link muestra texto legible)
+                  const linkTheme = document.getElementById('setTheme');
+                  if (linkTheme) linkTheme.textContent = emoji + ' ' + label;
+        }
+        // Detecta preferencia del usuario o localStorage
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            setTheme(savedTheme);
+        } else if (prefersDark) {
+            setTheme('dark');
+        }
+        if (btn) {
+            btn.addEventListener('click', () => {
+                const current = document.documentElement.getAttribute('data-theme');
+                setTheme(current === 'dark' ? 'light' : 'dark');
+            });
+        }
+        // Vincular el enlace "Cambiar tema" para que ejecute la misma acción
+        const linkSetTheme = document.getElementById('setTheme');
+        if (linkSetTheme) {
+            // click
+            linkSetTheme.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (btn) btn.click();
+            });
+            // keyboard (Enter / Space)
+            linkSetTheme.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    if (btn) btn.click();
+                }
+            });
+        }
+    });
+    // Añadir animación de 'barrido' (sweep) al header y a la imagen #foto al cargar la página
+    window.addEventListener('load', function() {
+        const header = document.querySelector('header');
+        const foto = document.getElementById('foto');
+        const footer = document.querySelector('footer');
+        const mainEl = document.querySelector('main');
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) {
+            // Si el usuario prefiere menos movimiento, mostramos todo sin animaciones
+            if (header) { header.style.opacity = '1'; header.style.transform = 'none'; }
+            if (foto) { foto.style.opacity = '1'; foto.style.transform = 'none'; }
+            if (footer) { footer.style.opacity = '1'; footer.style.transform = 'none'; }
+            return;
+        }
+        if (header) {
+            header.style.opacity = '';
+            header.style.transform = '';
+            header.classList.add('sweep-in');
+        }
+        // animate the form between header and foto for a pleasant stagger
+        const form = document.querySelector('form');
+        if (form) {
+            setTimeout(() => {
+                form.style.opacity = '';
+                form.style.transform = '';
+                form.classList.add('sweep-in');
+            }, 110);
+        }
+        if (foto) {
+            // esperar antes de animar la foto para efecto escalonado
+            setTimeout(() => {
+                foto.style.opacity = '';
+                foto.style.transform = '';
+                foto.classList.add('sweep-in');
+            }, 260);
+        }
+        // reserve bottom space so footer doesn't overlap content visually
+        if (mainEl) mainEl.classList.add('with-footer-space');
+        // animate footer slightly after foto
+        if (footer) {
+            setTimeout(() => {
+                footer.style.opacity = '';
+                footer.style.transform = '';
+                footer.classList.add('sweep-in');
+            }, 420);
+        }
+    });
+        </script>
+        <!--<video controls autoplay loop muted poster="images/iconoYo.jpg" width="auto" height="auto" src="https://filesamples.com/samples/video/mp4/sample_960x400_ocean_with_audio.mp4">
+        </video>-->
+        <main class="with-footer-space">
+            
+    <a download="" href="images/yo.jpg" class="reveal-3d visible" data-reveal-index="0">
+    <img id="foto" title="Foto de MV en blanco y negro" alt="Una fotografia de Michel Vasquez en blanco y negro" src="images/yo.jpg" class="sweep-in">
+        </a>
+        <!--Descripcion corta sobre Michel-->
+        <p class="reveal-3d visible" data-reveal-index="1">Programador trainee con <strong>carrera tecnica en programación</strong> y pasante de la carrera de <strong> Ingenieria en Sistemas Computacionales</strong> enfocado a la <strong>implementación de nuevas tecnologías y el desarrollo con IA para obtener códigos de calidad en menor tiempo, así como la automatización de procesos, contemplando la seguridad del desarrollo. </strong> </p>
+        <div role="contentinfo" class="reveal-3d visible" data-reveal-index="2">
+            <h2 class="reveal-3d visible" data-reveal-index="3">Experiencia</h2>
+            <p class="reveal-3d visible" data-reveal-index="4">He trabajado en proyectos de desarrollo de software, desarrollo web y desarrollo de aplicaciones moviles, asi como desaarrollar lo mencionado con IA.</p>
+        </div>
+            <!--Lista de habilidades-->
+        <section class="reveal-3d visible" data-reveal-index="5">
+            <article class="reveal-3d visible" data-reveal-index="6">
+                <h2 id="proyectos" class="reveal-3d visible" data-reveal-index="7">Proyectos </h2>
+            </article>
+            <iframe width="560" height="315" src="./Portafolio Web de Michel Vasquez - Portfolio del Ingeniero Michel Vasquez_files/Proyectos.html" title="GitHub Proyectos" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+            <article class="reveal-3d visible" data-reveal-index="8">
+                <h3 class="reveal-3d visible" data-reveal-index="9">Firewall físico</h3>
+                <p class="reveal-3d visible" data-reveal-index="10">Desarrollo de un firewall físico para la protección de la red de una empresa o institucion ya sea privada o publica.</p>
+            <article class="reveal-3d visible" data-reveal-index="11">
+                <h3 class="reveal-3d visible" data-reveal-index="12">Desarrollo de un sistema de control de acceso</h3>
+                <p class="reveal-3d visible" data-reveal-index="13">Desarrollo de un sistema de control de acceso para la entrada y salida de personas en un automobil antiguo.</p>
+                <h3 class="reveal-3d visible" data-reveal-index="14">Automatizacion de una casa a escala</h3>
+                <p class="reveal-3d visible" data-reveal-index="15">Desarrollo de un sistema de automatizacion de una casa a escala para la activacion de luces, puertas y ventanas.</p>
+                <h3 class="reveal-3d visible" data-reveal-index="16">Desarrollo de un punto de venta</h3>
+                <p class="reveal-3d visible" data-reveal-index="17">Desarrollo de un punto de venta para la administracion de una tienda de abarrotes.</p>
+                <h3 class="reveal-3d visible" data-reveal-index="18">Desarrollo de un ChatInteligente sin conexion a internet</h3>
+                <p class="reveal-3d visible" data-reveal-index="19">Desarrollo de un chat inteligente sin conexion a internet, muy similar a ChatGPT pero sin conexion a internet y sin necesidad de instalar alguna aplicación.</p>
+                <h2 id="habilidades" class="reveal-3d visible" data-reveal-index="20">Habilidades</h2>
+                    <ul class="reveal-3d visible" data-reveal-index="21">
+                        <li><small>Desarrollo con IA</small></li>
+                        <li><small>Automatizacion de Procesos de programación</small></li>
+                        <li><small>Programación</small></li>
+                        <li><small> Desarrollo Web</small></li>
+                        <li><small> Desarrollo de Software</small></li>
+                        <li><small> Desarrollo de Aplicaciones Moviles</small></li>
+                        <li><small> Desarrollo de Bases de Datos</small></li>
+                        <li><small> Desarrollo de Sistemas</small></li>
+                        <li><small> Desarrollo de Sistemas Embebidos</small></li>
+                        <li><small> Desarrollo de Sistemas de Información</small></li>
+                        <li><small> Administración de redes</small></li>
+                        <li><small>Analisis de vulnerabilidades</small></li>
+                    </ul>
+            </article>
+            </article></section>
+            <section class="reveal-3d visible" data-reveal-index="22">
+                <h2 class="reveal-3d visible" data-reveal-index="23">Preguntas Frecuentes</h2>
+                <details class="reveal-3d visible" data-reveal-index="24">
+                    <summary>¿Cuál es tu lenguaje de programación favorito?</summary>
+                    <p class="reveal-3d" data-reveal-index="25">Me gusta mucho programar en C++ y Python.</p>
+                </details>
+                <details class="reveal-3d visible" data-reveal-index="26">
+                    <summary>¿Cuales son tus estudios?</summary>
+                    <p class="reveal-3d" data-reveal-index="27">Estudio la carrera de Ingenieria en Sistemas Computacionales en el Instituto Tecnologico de Estudios Superiores del Oriente del Estado de México.</p>
+                </details>
+                <details open="" class="reveal-3d visible" data-reveal-index="28">
+                    <summary>¿Cuál es tu proyecto favorito?</summary>
+                    <p class="reveal-3d visible" data-reveal-index="29">Mi proyecto favorito es el Firewall físico .</p>
+            </details></section>
+            <aside class="reveal-3d visible" data-reveal-index="30">
+                <article class="reveal-3d visible" data-reveal-index="31">
+                <h2 id="lenguajes" class="reveal-3d visible" data-reveal-index="32"> Lenguajes o tecnológias </h2>
+                </article>       
+                    <ol class="reveal-3d visible" data-reveal-index="33">
+                        <small><li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                        <li>PHP</li>
+                        <li>Java</li>
+                        <li>Python</li>
+                        <li>C++</li>
+                        <li>SQL</li>
+                        <li>Ensambled</li>
+                        <li>Visual Basic</li>
+                        <li>C</li></small>
+                    </ol>
+            </aside>
+            <section class="reveal-3d visible" data-reveal-index="34">
+                <h2 class="reveal-3d visible" data-reveal-index="35">Formulario de contacto</h2>
+                <form action="file:///C:/" method="post" class="reveal-3d sweep-in visible" data-reveal-index="36">
+                    <fieldset class="centrar-campos reveal-3d visible" data-reveal-index="37">
+                        <legend>Información personal</legend>
+                        <div>
+                            <label>Nombre:
+                            <input type="text" id="nombre" name="nombre" placeholder="Michel Vasquez" required="">
+                            </label>
+                        </div>
+                        <div>    
+                            <label>Email:
+                            <input type="email" id="email" name="email" placeholder="tecpromicvas3@gmail.com" required="">
+                            </label>
+                        </div>
+                        <div>
+                            <label for="mensaje">Mensaje:</label>
+                            <textarea id="mensaje" name="mensaje" placeholder="Hola, me comunico por esté medio"></textarea>
+                        </div>
+                    </fieldset>
+                    <fieldset class="centrar-campos reveal-3d visible" data-reveal-index="38">
+                        <legend>Información adicional</legend>
+                        <div>
+                            <label for="telefono">Teléfono:</label>
+                            <input type="tel" id="telefono" name="telefono" placeholder="5575400718" required="" pattern="[0-9]{10}">
+                        </div>
+                    </fieldset>
+                    <fieldset class="centrar-campos reveal-3d visible" data-reveal-index="39">
+                        <legend>Otros</legend>
+                        <div>
+                            <label for="why">¿Por qué te gustaría contactarme?</label>
+                            <select id="why" name="why" required="">
+                                <option value="trabajo">Ofrecimiento de trabajo</option>
+                                <option value="proyecto">Proyecto en mente</option>
+                                <option value="proyecto">Dudas</option>
+                                <option value="otro">Más Información</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="terms">Acepto los términos y condiciones</label>
+                            <input type="checkbox" id="terms" name="terms" required="">
+                        </div>
+                        <div>
+                            <datalist id="languajes">
+                                <option value="HTML">
+                                </option><option value="CSS">
+                                </option><option value="JavaScript">
+                                </option><option value="PHP">
+                                </option><option value="Java">
+                                </option><option value="Python">
+                                </option><option value="C++">
+                                </option><option value="SQL">
+                                </option><option value="Ensambled">
+                                </option><option value="Visual Basic">
+                                </option><option value="C">
+                            </option></datalist>
+                            <label>
+                                ¿Qué lenguajes o tecnologías manejas?
+                                <input list="languajes" name="languajes">
+                            </label>
+                        </div>
+                    </fieldset>
+                    <div class="centrar-boton">
+                        <input type="submit" value="Enviar contacto">
+                    </div>
+            </form></section>
+            <!-- Contact links: wrapped to center them relative to the form above -->
+            <div class="contact-links" aria-label="Enlaces de contacto">
+                <a href="mailto:tecpromicvas3@gmail.com" class="reveal-3d visible" data-reveal-index="40">Enviame un correo
+                    <img src="file:///C:/Users/Michel%20Vasquez/Documents/Visual/PortafolioWeb/images/emailnew.png" width="50" height="50" alt="Teléfono icon">
+
+                </a>
+                <a href="tel:+525575400718" class="reveal-3d visible" data-reveal-index="41">Llamame por teléfono
+                    <img src="file:///C:/Users/Michel%20Vasquez/Documents/Visual/PortafolioWeb/images/llamar.png" width="50" height="50" alt="Teléfono icon">
+                </a>
+                <a href="https://wa.me/525575400718/?text=Hola%20como%20te%20va?" target="_blank" rel="noreferrer" class="reveal-3d visible" data-reveal-index="42">
+                    Enviame un whats <img src="file:///C:/Users/Michel%20Vasquez/Documents/Visual/PortafolioWeb/images/whatsapp.png" width="50" height="50" alt="WhatsApp icon">
+                </a>
+                <a href="https://www.linkedin.com/in/michel-vasquez281292/" class="reveal-3d visible" data-reveal-index="43">
+                    Buscame en LinkedIn <img src="file:///C:/Users/Michel%20Vasquez/Documents/Visual/PortafolioWeb/images/linkedin.png" width="50" height="50" class="logotipo-curvo" alt="LinkedIn icon">
+                </a>
+            </div>
+    </main>
+    <footer class="sweep-in">
+        <div class="footer-inner">
+            <p>Michel Vasquez © 2025 — Portafolio web de Michel Vasquez</p>
+        </div>
+    </footer>
+
+    <script>
+    // Reveal-on-scroll 3D effect for main textual content
+    (function(){
+        const container = document.querySelector('main');
+        if (!container) return;
+
+        // Select relevant textual blocks (from description to the end)
+        const nodes = container.querySelectorAll('p, h2, h3, section, article, div[role], ul, ol, details, aside, form, fieldset, a');
+        if (!nodes.length) return;
+
+        // Remove any pre-applied `visible` classes that exist in the static HTML so
+        // the JS-controlled reveal can run. Also ensure each element has the
+        // `reveal-3d` class and a reveal index for staggered animation.
+        nodes.forEach((el, i) => {
+            el.classList.remove('visible');
+            if (!el.classList.contains('reveal-3d')) el.classList.add('reveal-3d');
+            el.dataset.revealIndex = i;
+        });
+
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // Observe entries and toggle the `visible` class when they enter/exit the
+        // viewport. We DO NOT unobserve elements so they can animate again when
+        // scrolled out and back in.
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const el = entry.target;
+                if (entry.isIntersecting) {
+                    if (reduce) {
+                        el.classList.add('visible');
+                        return;
+                    }
+                    const idx = parseInt(el.dataset.revealIndex || 0, 10);
+                    // stagger based on index but slower and with a larger cap
+                    const delay = Math.min(idx * 140, 900);
+                    // Remove any visible first to ensure the animation restarts
+                    el.classList.remove('visible');
+                    setTimeout(() => {
+                        el.classList.add('visible');
+                    }, delay);
+                } else {
+                    // When element leaves viewport remove the class so it can
+                    // animate again when re-entering.
+                    el.classList.remove('visible');
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+        nodes.forEach(el => observer.observe(el));
+
+        // Handle <details> toggles: when a details element is opened, animate its
+        // inner reveal-3d children (use the same stagger logic). When it's closed,
+        // remove the visible class so it can animate again on next open.
+        const detailsList = container.querySelectorAll('details');
+        detailsList.forEach(d => {
+            d.addEventListener('toggle', () => {
+                const children = d.querySelectorAll('.reveal-3d');
+                const reducePref = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                if (d.open) {
+                    // Ensure children are reset so the animation can replay
+                    children.forEach(el => el.classList.remove('visible'));
+                    if (reducePref) {
+                        children.forEach(el => el.classList.add('visible'));
+                        return;
+                    }
+                    children.forEach((el, i) => {
+                        const delay = Math.min(i * 140, 900);
+                        setTimeout(() => el.classList.add('visible'), delay);
+                    });
+                } else {
+                    children.forEach(el => el.classList.remove('visible'));
+                }
+            });
+        });
+            // Animación de altura para <details>: mueve el contenido a un div .details-content
+            detailsList.forEach(d => {
+                // Solo si no está ya envuelto
+                if (!d.querySelector('.details-content')) {
+                    const content = document.createElement('div');
+                    content.className = 'details-content';
+                    // Mueve todos los hijos excepto <summary> dentro del div
+                    Array.from(d.children).forEach(child => {
+                        if (child.tagName !== 'SUMMARY') content.appendChild(child);
+                    });
+                    // Elimina los hijos originales (excepto summary)
+                    Array.from(d.children).forEach(child => {
+                        if (child.tagName !== 'SUMMARY') d.removeChild(child);
+                    });
+                    d.appendChild(content);
+                }
+            });
+    })();
+    </script>
+
+    
+
+</body></html>
